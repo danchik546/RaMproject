@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">FirstTry</string>
+    <string name="count">Count</string>
+    <string name="next">Next</string>
+    <string name="pages">Pages</string>
+    <string name="id">ID</string>
+    <string name="namechar">NameChar</string>
+    <string name="status">Status</string>
+    <string name="species">Species</string>
+    <string name="type">Type</string>
+    <string name="gender">Gender</string>
+    <string name="nameorigin">NameOrigin</string>
+    <string name="namelocation">NameLocation</string>
+    <string name="urllocation">UrlLocation</string>
+    <string name="urlchar">UrlChar</string>
+    <string name="created">Created</string>
+    <string name="todo">TODO</string>
 </resources>
