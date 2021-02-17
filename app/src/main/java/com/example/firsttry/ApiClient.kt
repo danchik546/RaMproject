@@ -1,15 +1,13 @@
-package com.example.firsttry;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+package com.example.firsttry
 
-public class ApiClient {
-   public static Retrofit retrofit = null;
-   public static Retrofit GetClient(){
-       retrofit = new Retrofit.Builder()
-               .baseUrl("https://rickandmortyapi.com/")
-               .addConverterFactory(GsonConverterFactory.create())
-               .build();
-       return retrofit;
-   }
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+
+object ApiClient {
+    val retrofit: Retrofit by lazy {
+        Retrofit.Builder()
+            .baseUrl("https://rickandmortyapi.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 }
-
