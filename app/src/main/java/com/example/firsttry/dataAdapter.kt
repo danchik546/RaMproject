@@ -1,87 +1,104 @@
 package com.example.firsttry
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentViewHolder
-import okhttp3.internal.notify
+import com.example.firsttry.databinding.RickListRowBinding
 
-class dataAdapter(): RecyclerView.Adapter<dataAdapter.ViewHolder>(){
-    val userDataList = ArrayList<DataModel.DataBean>()
+class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+    private val userResultDataList = mutableListOf<DataModel.DataBean>()
+    private val userinfoDataList1  = mutableListOf<String?>()
+    private var bindingRick: RickListRowBinding? = null
 
-    fun addDataList(arrList: ArrayList<DataModel.DataBean>){
-        userDataList.addAll(arrList)
+    fun addDataList(DataModel: DataModel){
+        var DataBeanean: DataModel.DataBean
+       // var info: DataModel.DataBean.info =
+        //var infolist: List<DataModel.DataBean.info> = listOf(info)
+        var resultList: List<DataModel.DataBean> = DataModel.dataList
+        //var infoList: List<String?> = listOf(DataModel.count, DataModel.pages,DataModel.next, DataModel.prev)
+      //  userinfoDataList1.addAll(infoList)
+        //  userinfoDataList1.addAll(infolist)
+        userResultDataList.addAll(resultList)
+
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.rick_list_row, viewGroup,  false)
-        return ViewHolder(view)
+        val inflater = LayoutInflater.from(viewGroup.context)
+        bindingRick = RickListRowBinding.inflate(inflater,viewGroup,false )
+        return ViewHolder(bindingRick!!)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        var userDto = userDataList[i]
-        viewHolder?.сount?.text = userDto.count.toString()
-        viewHolder?.pages?.text = userDto.pages.toString()
-        viewHolder?.next?.text = userDto.next
-        viewHolder?.prev?.text = userDto.prev
-        viewHolder?.id?.text = userDto.id.toString()
-        viewHolder?.nameChar?.text = userDto.nameChar
-        viewHolder?.status?.text = userDto.status
-        viewHolder?.species?.text = userDto.species
-        viewHolder?.type?.text = userDto.type
-        viewHolder?.gender?.text = userDto.gender
-        viewHolder?.nameOrigin?.text = userDto.nameOrigin
-        viewHolder?.urlOrigin?.text = userDto.urlOrigin
-        viewHolder?.nameLocation?.text = userDto.nameLocation
-        viewHolder?.urlLocation?.text = userDto.urlLocation
-        viewHolder?.urlChar?.text = userDto.urlChar
-        viewHolder?.created?.text = userDto.created
+        val userResultDto =  userResultDataList[i]
+       // val userInfoDto =  userinfoDataList1[i]
+      //  var info: DataModel.DataBean.info = com.example.firsttry.DataModel.DataBean.info()
+       // val userInfoDto =  userinfoDataList1[userinfoDataList1.size]
+      //  viewHolder.count?.text = userInfoDto?.get(0)?.toString()
+       //  viewHolder.pages?.text = userInfoDto?.get(1)?.toString()
+      //  viewHolder.next?.text = userInfoDto?.get(2)?.toString()
+      //   viewHolder.prev?.text = userInfoDto?.get(3)?.toString()
+        viewHolder.id?.text = userResultDto.id.toString()
+        viewHolder.nameChar?.text = userResultDto.name
+        viewHolder.status?.text = userResultDto.status
+        viewHolder.species?.text = userResultDto.species
+        viewHolder.type?.text = userResultDto.type
+        viewHolder.gender?.text = userResultDto.gender
+       // viewHolder.nameOrigin?.text = userResultDto.nameOrigin
+       // viewHolder.urlOrigin?.text = userOriginDto.url
+        //viewHolder.nameLocation?.text = userLocationDto.name
+        //viewHolder.urlLocation?.text = userLocationDto.url
+        viewHolder.episode?.text = userResultDto.episode.toString()
+        viewHolder.image?.text = userResultDto.image
+         viewHolder.url?.text = userResultDto.url
+        viewHolder.created?.text = userResultDto.created
 
     }
 
     override fun getItemCount(): Int {
-        return userDataList.size
+        return (userResultDataList.size)
     }
 
-     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-         var сount: TextView? = null
-         var pages: TextView? = null
-         var next: TextView? = null
-         var prev: TextView? = null
-         var id: TextView? = null
-         var nameChar: TextView? = null
-         var status: TextView? = null
-         var species: TextView? = null
-         var type: TextView? = null
-         var gender: TextView? = null
-         var nameOrigin: TextView? = null
-         var urlOrigin: TextView? = null
-         var nameLocation: TextView? = null
-         var urlLocation: TextView? = null
-         var urlChar: TextView? = null
-         var created: TextView? = null
-
-       init {
-           this.сount = view.findViewById<TextView>(R.id.Count)
-           this.pages = view.findViewById<TextView>(R.id.Pages)
-           this.next = view.findViewById<TextView>(R.id.Next)
-           this.prev = view.findViewById<TextView>(R.id.Prev)
-           this.id = view.findViewById<TextView>(R.id.ID)
-           this.nameChar = view.findViewById<TextView>(R.id.NameChar)
-           this.status = view.findViewById<TextView>(R.id.Status)
-           this.species = view.findViewById<TextView>(R.id.Species)
-           this.type = view.findViewById<TextView>(R.id.Type)
-           this.gender = view.findViewById<TextView>(R.id.Gender)
-           this.nameOrigin = view.findViewById<TextView>(R.id.NameOrigin)
-           this.urlOrigin = view.findViewById<TextView>(R.id.UrlOrigin)
-           this.nameLocation = view.findViewById<TextView>(R.id.NameLocation)
-           this.urlLocation = view.findViewById<TextView>(R.id.UrlLocation)
-           this.urlChar = view.findViewById<TextView>(R.id.UrlChar)
-           this.created = view.findViewById<TextView>(R.id.Created)
-       }
+    class ViewHolder(bindingRick: RickListRowBinding): RecyclerView.ViewHolder(bindingRick.root){
+        var count: TextView? = null
+        var pages: TextView? = null
+        var next: TextView? = null
+        var prev: TextView? = null
+        var id: TextView? = null
+        var nameChar: TextView? = null
+        var status: TextView? = null
+        var species: TextView? = null
+        var type: TextView? = null
+        var gender: TextView? = null
+        var nameOrigin: TextView? = null
+        var urlOrigin: TextView? = null
+        var nameLocation: TextView? = null
+        var urlLocation: TextView? = null
+        var image: TextView? = null
+        var episode: TextView? = null
+        var url: TextView? = null
+        var created: TextView? = null
+        init {
+            this.count = bindingRick.Count
+            this.pages = bindingRick.Pages
+            this.next = bindingRick.Next
+            this.prev = bindingRick.Prev
+            this.id = bindingRick.ID
+            this.nameChar = bindingRick.NameChar
+            this.status = bindingRick.Status
+            this.species = bindingRick.Species
+            this.type = bindingRick.Type
+            this.gender = bindingRick.Gender
+            this.nameOrigin = bindingRick.NameOrigin
+            this.urlOrigin = bindingRick.UrlOrigin
+            this.nameLocation = bindingRick.NameLocation
+            this.urlLocation = bindingRick.UrlLocation
+            this.image = bindingRick.image
+            this.episode = bindingRick.episode
+            this.url = bindingRick.url
+            this.created = bindingRick.Created
+        }
     }
 
 }

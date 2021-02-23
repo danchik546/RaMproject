@@ -3,8 +3,8 @@ package com.example.firsttry
 import com.google.gson.annotations.SerializedName
 
 class UserDTO {
-    var count: Int = 0
-    var pages: Int = 0
+    var count: String = ""
+    var pages: String = ""
     var next: String = ""
     var prev: String = ""
     var id: Int = 0
@@ -17,12 +17,16 @@ class UserDTO {
     var urlOrigin: String = ""
     var nameLocation: String = ""
     var urlLocation: String = ""
-    var urlChar: String = ""
+    var image: String = ""
+    var episode: List<String> = emptyList()
+    var url: String= ""
     var created: String = ""
+
     constructor() {}
-    constructor(count: Int, pages: Int, next: String, prev: String, id: Int, nameChar: String,
+    constructor(count: String, pages: String, next: String, prev: String, id: Int, nameChar: String,
                 status: String, species: String, type: String, gender: String, nameOrigin: String,
-                urlOrigin: String, nameLocation: String, urlLocation: String, urlChar: String,created: String )
+                urlOrigin: String, nameLocation: String, urlLocation: String, image: String,
+                episode: List<String>, url: String, created: String )
     {
         this.count = count
         this.pages = pages
@@ -38,7 +42,9 @@ class UserDTO {
         this.urlOrigin = urlOrigin
         this.nameLocation = nameLocation
         this.urlLocation = urlLocation
-        this.urlChar = urlChar
+        this.image = image
+        this.episode = episode
+        this.url = url
         this.created = created
     }
 

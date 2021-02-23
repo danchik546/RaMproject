@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RickId"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -94,10 +95,20 @@
             android:layout_height="wrap_content"
             android:text="@string/urllocation"/>
         <TextView
-            android:id="@+id/UrlChar"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/urlchar"/>
+            android:text="image"/>
+        <TextView
+            android:id="@+id/episode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Episode"/>
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="url"/>
         <TextView
             android:id="@+id/Created"
             android:layout_width="match_parent"
