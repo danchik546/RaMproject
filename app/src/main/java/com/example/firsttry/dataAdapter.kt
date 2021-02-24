@@ -12,40 +12,28 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
     private var bindingRick: RickListRowBinding? = null
 
     fun addDataList(DataModel: DataModel){
-        var DataBeanean: DataModel.DataBean
-       // var info: DataModel.DataBean.info =
-        //var infolist: List<DataModel.DataBean.info> = listOf(info)
-        var resultList: List<DataModel.DataBean> = DataModel.dataList
-        //var infoList: List<String?> = listOf(DataModel.count, DataModel.pages,DataModel.next, DataModel.prev)
-      //  userinfoDataList1.addAll(infoList)
-        //  userinfoDataList1.addAll(infolist)
-        userResultDataList.addAll(resultList)
-
+        userResultDataList.addAll(DataModel.dataList)
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val inflater = LayoutInflater.from(viewGroup.context)
-        bindingRick = RickListRowBinding.inflate(inflater,viewGroup,false )
-        return ViewHolder(bindingRick!!)
+        val binding = RickListRowBinding.inflate(inflater,viewGroup,false )
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val userResultDto =  userResultDataList[i]
-       // val userInfoDto =  userinfoDataList1[i]
-      //  var info: DataModel.DataBean.info = com.example.firsttry.DataModel.DataBean.info()
-       // val userInfoDto =  userinfoDataList1[userinfoDataList1.size]
-      //  viewHolder.count?.text = userInfoDto?.get(0)?.toString()
-       //  viewHolder.pages?.text = userInfoDto?.get(1)?.toString()
-      //  viewHolder.next?.text = userInfoDto?.get(2)?.toString()
-      //   viewHolder.prev?.text = userInfoDto?.get(3)?.toString()
+
+        viewHolder.next?.text = userResultDto.next
+          viewHolder.prev?.text = userResultDto.prev
         viewHolder.id?.text = userResultDto.id.toString()
         viewHolder.nameChar?.text = userResultDto.name
         viewHolder.status?.text = userResultDto.status
         viewHolder.species?.text = userResultDto.species
         viewHolder.type?.text = userResultDto.type
         viewHolder.gender?.text = userResultDto.gender
-       // viewHolder.nameOrigin?.text = userResultDto.nameOrigin
+        //viewHolder.nameOrigin?.text = userResultDto
        // viewHolder.urlOrigin?.text = userOriginDto.url
         //viewHolder.nameLocation?.text = userLocationDto.name
         //viewHolder.urlLocation?.text = userLocationDto.url

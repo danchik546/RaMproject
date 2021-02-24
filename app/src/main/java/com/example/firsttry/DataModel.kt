@@ -1,44 +1,13 @@
 package com.example.firsttry
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.launch
 
 
-/*class DataModel(
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
-    val dataList2: List<DataModel.DataBean> = TODO()
-    class DataBean(): ViewModel() {
-        class info {
-            val count: LiveData<String?> = TODO()
-            val pages: LiveData<String?> = TODO()
-            val next: LiveData<String?> = TODO()
-            val prev: LiveData<String?> = TODO()
-        }
-        val id: LiveData<String> = TODO()
-        val name: LiveData<String> = TODO()
-        val status: LiveData<String> = TODO()
-        val species: LiveData<String> = TODO()
-        val type: LiveData<String> = TODO()
-        val gender: LiveData<String> = TODO()
-        val image: LiveData<String> = TODO()
-        val episode: LiveData<List<String>> = TODO()
-        val url: LiveData<String> = TODO()
-        val created: LiveData<String> = TODO()
-
-        class origin {
-            val name: LiveData<String> = TODO()
-            val url: LiveData<String> = TODO()
-        }
-
-        class location {
-            val name: LiveData<String> = TODO()
-            val url: LiveData<String> = TODO()
-        }
-    }
-} */
 class DataModel(
     @SerializedName("results") val dataList: List<DataBean>
 ) {
@@ -70,4 +39,15 @@ class DataModel(
         val name: String,
         val url: String
     )
+}
+class MyViewModelconstructor(
+    @Assisted savedStateHandle: SavedStateHandle,
+    Repository: Reprository
+) :ViewModel(){
+    val data = MutableLiveData<DataModel>()
+    init {
+        viewModelScope.launch {
+            data.value = Repository.listRepos()
+        }
+    }
 }
