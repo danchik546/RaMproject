@@ -1,14 +1,15 @@
 package com.example.firsttry
 
+
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firsttry.databinding.FragmentPersonInfoBinding
 import com.example.firsttry.databinding.RickListRowBinding
 
-class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
+class DataAdapterSingleChar ( private val clickListener:(Int)->Unit
+): RecyclerView.Adapter<DataAdapterSingleChar.ViewHolder>(){
     private val userResultDataList = mutableListOf<DataModelAllChar.DataBean>()
     private val userinfoDataList1  = mutableListOf<String?>()
     private var bindingRick: RickListRowBinding? = null
@@ -22,19 +23,30 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
 
         val inflater = LayoutInflater.from(viewGroup.context)
-        val binding = RickListRowBinding.inflate(inflater,viewGroup,false )
         val bindingSingle = FragmentPersonInfoBinding.inflate(inflater,viewGroup,false )
-        return ViewHolder(binding, viewGroup)
+        return ViewHolder(bindingSingle)
     }
 
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val userResultDto =  userResultDataList[i]
-      //  viewHolder.bindingRick.root.setOnClickListener{
-       //     clickListener(userResultDto.id)
-      //  }
-       // viewHolder.bindingRick.root.setOnClickListener { clickListener(userResultDto.id)
-       // }
+        viewHolder.bindingSingle.root.setOnClickListener { clickListener(viewHolder.id?.text.toString().toInt())
+            viewHolder.id?.text = userResultDto.id.toString()
+            viewHolder.nameChar?.text = userResultDto.name
+            viewHolder.status?.text = userResultDto.status
+            viewHolder.species?.text = userResultDto.species
+            viewHolder.type?.text = userResultDto.type
+            viewHolder.gender?.text = userResultDto.gender
+            viewHolder.nameOrigin?.text = userResultDto.origin.name
+            viewHolder.urlOrigin?.text = userResultDto.origin.url
+            viewHolder.nameLocation?.text = userResultDto.location.name
+            viewHolder.urlLocation?.text = userResultDto.location.url
+            viewHolder.episode?.text = userResultDto.episode.toString()
+            viewHolder.image?.text = userResultDto.image
+            viewHolder.url?.text = userResultDto.url
+            viewHolder.created?.text = userResultDto.created
+
+        }
         viewHolder.next?.text = userResultDto.info?.next
         viewHolder.prev?.text = userResultDto.info?.prev
         viewHolder.id?.text = userResultDto.id.toString()
@@ -47,9 +59,9 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
         viewHolder.urlOrigin?.text = userResultDto.origin.url
         viewHolder.nameLocation?.text = userResultDto.location.name
         viewHolder.urlLocation?.text = userResultDto.location.url
-        //viewHolder.episode?.text = userResultDto.episode.toString()
+        viewHolder.episode?.text = userResultDto.episode.toString()
         viewHolder.image?.text = userResultDto.image
-         viewHolder.url?.text = userResultDto.url
+        viewHolder.url?.text = userResultDto.url
         viewHolder.created?.text = userResultDto.created
 
     }
@@ -59,7 +71,7 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
     }
 
 
-    class ViewHolder(val bindingRick: RickListRowBinding, viewGroup: ViewGroup): RecyclerView.ViewHolder(bindingRick.root) {
+    class ViewHolder(val bindingSingle: FragmentPersonInfoBinding): RecyclerView.ViewHolder(bindingSingle.root) {
         var count: TextView? = null
         var pages: TextView? = null
         var next: TextView? = null
@@ -79,24 +91,20 @@ class DataAdapter: RecyclerView.Adapter<DataAdapter.ViewHolder>(){
         var url: TextView? = null
         var created: TextView? = null
         init {
-            this.count = bindingRick.Count
-            this.pages = bindingRick.Pages
-            this.next = bindingRick.Next
-            this.prev = bindingRick.Prev
-            this.id = bindingRick.ID
-            this.nameChar = bindingRick.NameChar
-            this.status = bindingRick.Status
-            this.species = bindingRick.Species
-            this.type = bindingRick.Type
-            this.gender = bindingRick.Gender
-            this.nameOrigin = bindingRick.NameOrigin
-            this.urlOrigin = bindingRick.UrlOrigin
-            this.nameLocation = bindingRick.NameLocation
-            this.urlLocation = bindingRick.UrlLocation
-            this.image = bindingRick.image
-            this.episode = bindingRick.episode
-            this.url = bindingRick.url
-            this.created = bindingRick.Created
+                this.id = bindingSingle.ID
+                this.nameChar = bindingSingle.NameChar
+                this.status = bindingSingle.Status
+                this.species = bindingSingle.Species
+                this.type = bindingSingle.Type
+                this.gender = bindingSingle.Gender
+                this.nameOrigin = bindingSingle.NameOrigin
+                this.urlOrigin = bindingSingle.UrlOrigin
+                this.nameLocation = bindingSingle.NameLocation
+                this.urlLocation = bindingSingle.UrlLocation
+                this.image = bindingSingle.image
+                this.episode = bindingSingle.episode
+                this.url = bindingSingle.url
+                this.created = bindingSingle.Created
+            }
         }
     }
-}

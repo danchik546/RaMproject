@@ -45,11 +45,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="prev"/>
+
         <TextView
             android:id="@+id/ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@string/id"/>
+            android:clickable="true"
+            android:onClick="SingleCharProfile"
+            tools:text="@string/id" />
         <TextView
             android:id="@+id/NameChar"
             android:layout_width="match_parent"
@@ -116,5 +119,14 @@
             android:layout_height="wrap_content"
             tools:text="@string/created"/>
 
+        <Button
+            android:id="@+id/GetProfileButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="SingleCharProfile"
+            android:text="Посмотреть Профиль" />
+
     </LinearLayout>
+
+
 </RelativeLayout>

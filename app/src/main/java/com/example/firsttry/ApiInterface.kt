@@ -1,11 +1,13 @@
 package com.example.firsttry
 
-import android.util.Log
 import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
-interface GitHubService {
+interface ApiInterface {
     @GET("api/character")
-    fun listRepos(): Call<DataModel>
+    fun listRepos(): Call<DataModelAllChar>
+
+    @GET("api/character/{id}")
+    suspend fun user(@Path("id") id:Int):DataModelSingleChar
 }
